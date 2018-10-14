@@ -23,12 +23,12 @@ export class UsbScanner extends EventEmitter implements OnDataScanned {
             console.warn(`Device not found, please provide a valid path or vendor/product combination.`);
         } else {
             this.hid = new HID(device.vendorId, device.productId);
+        }
 
-            if (hidMap) {
-                this.hidMap = hidMap;
-            } else {
-                this.hidMap = defaultHidMap();
-            }
+        if (hidMap) {
+            this.hidMap = hidMap;
+        } else {
+            this.hidMap = defaultHidMap();
         }
     }
 
