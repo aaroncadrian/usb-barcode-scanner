@@ -1,14 +1,14 @@
-import { HID, Device } from 'node-hid';
+import { Device, HID } from 'node-hid';
 import { EventEmitter } from 'events';
 
-import { UsbScannerOptions, HidMap, OnDataScanned } from './usb-barcode-scanner-types';
-import { getDevice, defaultHidMap, getDeviceByPath } from './usb-barcode-scanner-utils';
+import { HidMap, OnDataScanned, UsbScannerOptions } from './usb-barcode-scanner-types';
+import { defaultHidMap, getDevice, getDeviceByPath } from './usb-barcode-scanner-utils';
 
 export class UsbScanner extends EventEmitter implements OnDataScanned {
     hid?: HID;
-    hidMap: any;
+    hidMap: HidMap;
 
-    constructor(options: UsbScannerOptions, hidMap?: any) {
+    constructor(options: UsbScannerOptions, hidMap?: HidMap) {
         super();
 
         let device: Device|undefined;
