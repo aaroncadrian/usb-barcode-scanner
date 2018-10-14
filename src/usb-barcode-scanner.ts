@@ -14,7 +14,7 @@ export class UsbScanner extends EventEmitter implements OnDataScanned {
         let device: Device|undefined;
 
         if (options.path) {
-            device = this.retreiveDeviceByPath(options.path);
+            device = this.retrieveDeviceByPath(options.path);
         } else if (options.vendorId && options.productId) {
             device = getDevice(options.vendorId, options.productId);
         }
@@ -32,11 +32,11 @@ export class UsbScanner extends EventEmitter implements OnDataScanned {
         }
     }
 
-    private retreiveDevice(vendorId: number, productId: number): Device|undefined {
+    private retrieveDevice(vendorId: number, productId: number): Device|undefined {
         return getDevice(vendorId, productId);
     }
 
-    private retreiveDeviceByPath(path: string): Device|undefined {
+    private retrieveDeviceByPath(path: string): Device|undefined {
         return getDeviceByPath(path);
     }
 
