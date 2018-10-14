@@ -18,7 +18,7 @@ export class UsbScanner extends EventEmitter implements OnDataScanned {
         let device: Device|undefined;
 
         if (isPathOption(options)) {
-            device = this.retrieveDeviceByPath((<PathOption>options).path);
+            device = this.retrieveDeviceByPath(options.path);
         } else {
             device = getDevice(options.vendorId, options.productId);
         }
