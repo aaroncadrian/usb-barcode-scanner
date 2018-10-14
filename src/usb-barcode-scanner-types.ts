@@ -9,6 +9,5 @@ export interface OnDataScanned {
 }
 
 export interface HidMap {
-    code: number,
-    value: string
+    [code: number]: string
 }
