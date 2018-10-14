@@ -1,5 +1,6 @@
 import { Device, devices } from 'node-hid';
 import _ from 'lodash';
+import { HidMap } from "./usb-barcode-scanner-types";
 
 export function getDevices(): Device[] {
     return devices();
@@ -13,7 +14,7 @@ export function getDeviceByPath(path: string): Device|undefined {
     return _.find(getDevices(), { 'path': path });
 }
 
-export function defaultHidMap(): Object {
+export function defaultHidMap(): HidMap {
     return {
         4: "A",
         5: "B",
