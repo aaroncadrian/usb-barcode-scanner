@@ -4,7 +4,7 @@ export interface UsbScannerOptions {
     path?: string
 }
 
-export interface onDataScanned {
+export interface OnDataScanned {
     on(event: string, listener: Function): this;
 }
 
