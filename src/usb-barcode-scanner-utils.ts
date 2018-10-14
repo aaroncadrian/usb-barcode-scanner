@@ -7,11 +7,11 @@ export function getDevices(): Device[] {
 }
 
 export function getDevice(vendorId: number, productId: number): Device|undefined {
-    return _.find(getDevices(), { 'vendorId': vendorId, 'productId': productId });
+    return _.find(getDevices(), {vendorId: vendorId, productId: productId});
 }
 
 export function getDeviceByPath(path: string): Device|undefined {
-    return _.find(getDevices(), { 'path': path });
+    return _.find(getDevices(), {path: path});
 }
 
 export function defaultHidMap(): HidMap {
