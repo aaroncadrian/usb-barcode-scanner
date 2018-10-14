@@ -28,3 +28,6 @@ build/Release
 node_modules
 
 dist
+
+# For JetBrains IDE
+.idea
