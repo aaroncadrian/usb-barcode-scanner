@@ -1,9 +1,11 @@
 import { HID } from 'node-hid';
 import { EventEmitter } from 'events';
 
-import { HidMap, OnDataScanned, UsbScannerOptions } from './usb-barcode-scanner-types';
-import { defaultHidMap } from './usb-barcode-scanner-utils';
-import { DeviceManager } from "./device-manager";
+import { OnDataScanned } from './usb-barcode-scanner-types';
+import { defaultHidMap } from '../hid-map/default-hid-map';
+import { DeviceManager } from "../devices/device-manager";
+import { UsbScannerOptions } from "./options.interface";
+import { HidMap } from "../hid-map/hid-map.interface";
 
 
 export class UsbScanner extends EventEmitter implements OnDataScanned {
@@ -31,16 +33,16 @@ export class UsbScanner extends EventEmitter implements OnDataScanned {
 
     startScanning(): void {
         if (this.hid) {
-            let bcodeBuffer: string[] = [];
+            let barcodeBuffer: string[] = [];
             let barcode: string = '';
-            
+
             this.hid.on('data', (chunk) => {
                 if (this.hidMap[chunk[2]]) {
                     if (chunk[2] !== 40) {
-                        bcodeBuffer.push(this.hidMap[chunk[2]]);
+                        barcodeBuffer.push(this.hidMap[chunk[2]]);
                     } else {
-                        barcode = bcodeBuffer.join("");
-                        bcodeBuffer = [];
+                        barcode = barcodeBuffer.join("");
+                        barcodeBuffer = [];
 
                         this.emitDataScanned(barcode);
                     }
@@ -56,6 +58,6 @@ export class UsbScanner extends EventEmitter implements OnDataScanned {
     }
 
     private emitDataScanned(data: string): void {
-        this.emit('data', data)
+        this.emit('data', data);
     }
 }
