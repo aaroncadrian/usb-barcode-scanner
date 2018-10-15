@@ -1,6 +1,7 @@
 import { Device, devices } from "node-hid";
 import _ from "lodash";
-import { isPathOption, UsbScannerOptions } from "./usb-barcode-scanner-types";
+import { UsbScannerOptions } from "../scanner/options.interface";
+import { isPathOption } from "../scanner/options.interface";
 
 export class DeviceManager {
     private readonly devices: Device[];
