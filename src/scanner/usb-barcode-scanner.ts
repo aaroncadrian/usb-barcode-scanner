@@ -2,17 +2,17 @@ import { HID } from 'node-hid';
 import { EventEmitter } from 'events';
 
 import { OnDataScanned } from './usb-barcode-scanner-types';
-import { defaultHidMap } from '../hid-map/default-hid-map';
 import { DeviceManager } from "../devices/device-manager";
 import { UsbScannerOptions } from "./options.interface";
-import { HidMap } from "../hid-map/hid-map.interface";
+import { IHidMap } from "../hid-map/hid-map.interface";
+import { HidMap } from "../hid-map/hid-map";
 
 
 export class UsbScanner extends EventEmitter implements OnDataScanned {
     hid?: HID;
-    hidMap: HidMap;
+    hidMap: IHidMap = HidMap.defaultHidMap;
 
-    constructor(options: UsbScannerOptions, hidMap?: HidMap) {
+    constructor(options: UsbScannerOptions, hidMap?: IHidMap) {
         super();
 
         const deviceManager = new DeviceManager();
@@ -26,8 +26,6 @@ export class UsbScanner extends EventEmitter implements OnDataScanned {
 
         if (hidMap) {
             this.hidMap = hidMap;
-        } else {
-            this.hidMap = defaultHidMap();
         }
     }
 
