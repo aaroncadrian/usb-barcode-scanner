@@ -4,4 +4,4 @@ export { UsbScannerOptions } from "./scanner/options.interface";
 export { PathOption } from "./scanner/options.interface";
 export { VendorProductOption } from "./scanner/options.interface";
 export { IHidMap } from "./hid-map/hid-map.interface";
-export { defaultHidMap } from "./hid-map/default-hid-map";
+export { DEFAULT_HID_MAP } from "./hid-map/default-hid-map";

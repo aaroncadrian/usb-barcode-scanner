@@ -1,6 +1,6 @@
 import { IHidMap } from "./hid-map.interface";
 
-export const defaultHidMap: IHidMap = {
+export const DEFAULT_HID_MAP: IHidMap = {
     4: "A",
     5: "B",
     6: "C",
