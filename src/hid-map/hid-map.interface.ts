@@ -1,3 +1,3 @@
-export interface HidMap {
+export interface IHidMap {
     [code: number]: string
 }
