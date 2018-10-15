@@ -1,5 +1,6 @@
+import { Device } from "node-hid";
 import { DeviceManager } from "./device-manager";
 
-export function getDevices() {
+export function getDevices(): Device[] {
     return DeviceManager.devices;
 }
