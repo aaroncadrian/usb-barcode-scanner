@@ -1,8 +1,9 @@
-import { Device, HID } from 'node-hid';
+import { HID } from 'node-hid';
 import { EventEmitter } from 'events';
 
-import { HidMap, isPathOption, OnDataScanned, UsbScannerOptions } from './usb-barcode-scanner-types';
-import { defaultHidMap, getDevice, getDeviceByPath } from './usb-barcode-scanner-utils';
+import { HidMap, OnDataScanned, UsbScannerOptions } from './usb-barcode-scanner-types';
+import { defaultHidMap } from './usb-barcode-scanner-utils';
+import { DeviceManager } from "./device-manager";
 
 
 export class UsbScanner extends EventEmitter implements OnDataScanned {
@@ -12,13 +13,8 @@ export class UsbScanner extends EventEmitter implements OnDataScanned {
     constructor(options: UsbScannerOptions, hidMap?: HidMap) {
         super();
 
-        let device: Device|undefined;
-
-        if (isPathOption(options)) {
-            device = this.retrieveDeviceByPath(options.path);
-        } else {
-            device = getDevice(options.vendorId, options.productId);
-        }
+        const deviceManager = new DeviceManager();
+        const device = deviceManager.getDevice(options);
 
         if (device === undefined) {
             console.warn(`Device not found, please provide a valid path or vendor/product combination.`);
@@ -31,14 +27,6 @@ export class UsbScanner extends EventEmitter implements OnDataScanned {
         } else {
             this.hidMap = defaultHidMap();
         }
-    }
-
-    private retrieveDevice(vendorId: number, productId: number): Device|undefined {
-        return getDevice(vendorId, productId);
-    }
-
-    private retrieveDeviceByPath(path: string): Device|undefined {
-        return getDeviceByPath(path);
     }
 
     startScanning(): void {
