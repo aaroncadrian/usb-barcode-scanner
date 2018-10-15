@@ -1,9 +1,9 @@
-# Typed usb-barcode scanner
-A typed library for using USB barcode scanners in Node.js with support for Typescript.
+# Type-Safe Library for USB Barcode Scanners
+A type-safe library for using USB barcode scanners in Node.js with support for TypeScript.
 
 <span style="color:red">On Linux and Mac, you have to run your application with root privileges.</span>
 
-## Intallation
+## Installation
 You can install this package by running the following command:
 ``` bash
 npm i usb-barcode-scanner --save
@@ -13,7 +13,7 @@ Or using yarn:
 yarn add usb-barcode-scanner
 ```
 
-## Usage Typescript
+## TypeScript Usage
 
 You can list all devices using the following code:
 ``` typescript
@@ -45,7 +45,7 @@ To stop scanning, you can use:
 scanner.stopScanning();
 ```
 
-## Usage Vanilla JS
+## Vanilla JavaScript Usage
 You can list all devices using the following code:
 ``` javascript
 let getDevices = require('usb-barcode-scanner').getDevices;
