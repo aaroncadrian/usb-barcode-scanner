@@ -7,8 +7,7 @@ import { UsbScannerOptions } from "./options.interface";
 import { IHidMap } from "../hid-map/hid-map.interface";
 import { HidMap } from "../hid-map/hid-map";
 
-
-export class UsbScanner extends EventEmitter implements OnDataScanned {
+export class BarcodeScanner extends EventEmitter implements OnDataScanned {
     hid?: HID;
     hidMap: IHidMap = HidMap.defaultHidMap;
 
