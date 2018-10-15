@@ -30,10 +30,10 @@ export class UsbScanner extends EventEmitter implements OnDataScanned {
     }
 
     startScanning(): void {
-        let bcodeBuffer: string[] = [];
-        let barcode: string = '';
-
         if (this.hid) {
+            let bcodeBuffer: string[] = [];
+            let barcode: string = '';
+            
             this.hid.on('data', (chunk) => {
                 if (this.hidMap[chunk[2]]) {
                     if (chunk[2] !== 40) {
