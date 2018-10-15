@@ -1,28 +1,23 @@
 import { Device, devices } from "node-hid";
 import _ from "lodash";
-import { UsbScannerOptions } from "../scanner/options.interface";
-import { isPathOption } from "../scanner/options.interface";
+import { isPathOption, UsbScannerOptions } from "../scanner/options.interface";
 
 export class DeviceManager {
-    private readonly devices: Device[];
+    private static readonly _devices: Device[] = devices();
 
-    constructor() {
-        this.devices = devices();
+    public static get devices(): Device[] {
+        return DeviceManager._devices;
     }
 
-    getDevices(): Device[] {
-        return this.devices;
-    }
-
-    getDevice(options: UsbScannerOptions): Device|undefined {
+    public static getDevice(options: UsbScannerOptions): Device|undefined {
         let predicate: object;
-        
+
         if (isPathOption(options)) {
             predicate = {path: options.path};
         } else {
             predicate = {vendorId: options.vendorId, productId: options.productId};
         }
 
-        return _.find(this.devices, predicate);
+        return _.find(DeviceManager.devices, predicate);
     }
 }

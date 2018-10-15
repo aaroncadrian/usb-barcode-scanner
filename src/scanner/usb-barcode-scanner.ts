@@ -14,9 +14,8 @@ export class UsbScanner extends EventEmitter implements OnDataScanned {
 
     constructor(options: UsbScannerOptions, hidMap?: IHidMap) {
         super();
-
-        const deviceManager = new DeviceManager();
-        const device = deviceManager.getDevice(options);
+        
+        const device = DeviceManager.getDevice(options);
 
         if (device === undefined) {
             console.warn(`Device not found, please provide a valid path or vendor/product combination.`);
