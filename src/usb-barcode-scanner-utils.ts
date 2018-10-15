@@ -1,18 +1,4 @@
-import { Device, devices } from 'node-hid';
-import _ from 'lodash';
 import { HidMap } from "./usb-barcode-scanner-types";
-
-export function getDevices(): Device[] {
-    return devices();
-}
-
-export function getDevice(vendorId: number, productId: number): Device|undefined {
-    return _.find(getDevices(), {vendorId: vendorId, productId: productId});
-}
-
-export function getDeviceByPath(path: string): Device|undefined {
-    return _.find(getDevices(), {path: path});
-}
 
 export function defaultHidMap(): HidMap {
     return {
