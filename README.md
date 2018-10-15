@@ -15,22 +15,17 @@ yarn add usb-barcode-scanner
 
 ## TypeScript Usage
 
-You can list all devices using the following code:
-``` typescript
-import { getDevices } from 'usb-barcode-scanner';
+### Instantiating a Scanner
 
-console.log(getDevices());
-```
+#### By Vendor ID and Product ID
+You can instantiate a scanner by passing an object containing the vendorId and productId of the device:
 
 ``` typescript
 import { UsbScanner } from 'usb-barcode-scanner';
 
-let scanner = new UsbScanner({
+const scanner = new UsbScanner({
     vendorId: 1155,
     productId: 22352
-    /** You could also initialize the scanner by giving entering the path variable:
-     *  path: 'IOService:/AppleACPI etc...'
-    **/  
 });
 
 scanner.on('data', (data) => {
@@ -40,9 +35,46 @@ scanner.on('data', (data) => {
 scanner.startScanning();
 ```
 
+#### By Path
+
+``` typescript
+import { UsbScanner } from 'usb-barcode-scanner';
+
+const scanner = new UsbScanner({
+    path: 'IOService:/AppleACPI etc...'
+});
+
+scanner.on('data', (data) => {
+    console.log(data);
+});
+
+scanner.startScanning();
+```
+
+### Stop Scanning
+
 To stop scanning, you can use:
 ``` typescript
 scanner.stopScanning();
+```
+
+Currently, when you call the ```stopScanning()``` method, 
+you cannot resume scanning on the same object by calling ```startScanning()``` again.
+
+### List all HID devices
+You can list all HID devices using the following code:
+``` typescript
+import { DeviceManager } from 'usb-barcode-scanner';
+
+console.log(DeviceManager.devices);
+```
+
+or the following way:
+
+``` typescript
+import { getDevices } from 'usb-barcode-scanner';
+
+console.log(getDevices());
 ```
 
 ## Vanilla JavaScript Usage
