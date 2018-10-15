@@ -1,5 +1,3 @@
 import { BarcodeScanner } from "./barcode-scanner";
 
-export class UsbScanner extends BarcodeScanner {
-    
-}
+export class UsbScanner extends BarcodeScanner {}
