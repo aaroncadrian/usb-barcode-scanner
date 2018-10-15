@@ -1,3 +1,7 @@
-export * from './usb-barcode-scanner';
-export * from './usb-barcode-scanner-utils';
-export * from './usb-barcode-scanner-types';
+export { UsbScanner } from './scanner/usb-barcode-scanner';
+export { OnDataScanned } from './scanner/usb-barcode-scanner-types';
+export { UsbScannerOptions } from "./scanner/options.interface";
+export { PathOption } from "./scanner/options.interface";
+export { VendorProductOption } from "./scanner/options.interface";
+export { HidMap } from "./hid-map/hid-map.interface";
+export { defaultHidMap } from "./hid-map/default-hid-map";
