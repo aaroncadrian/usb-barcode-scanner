@@ -10,6 +10,10 @@ export class DeviceManager {
         this.devices = devices();
     }
 
+    getDevices(): Device[] {
+        return this.devices;
+    }
+
     getDevice(options: UsbScannerOptions): Device|undefined {
         let predicate: object;
         
