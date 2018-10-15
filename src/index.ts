@@ -5,4 +5,4 @@ export { PathOption } from "./scanner/options.interface";
 export { VendorProductOption } from "./scanner/options.interface";
 export { IHidMap } from "./hid-map/hid-map.interface";
 export { DEFAULT_HID_MAP } from "./hid-map/default-hid-map";
-export { getDevices } from './devices/get-devices.function';
+export { getDevices, getDevice, getDeviceByPath } from './devices/device-helper-functions';
